@@ -1,5 +1,6 @@
-import 'dart:async';
 
+import 'package:get/get.dart';
+import 'package:tododo/controllers/splash_controller.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,35 +11,18 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  double _progress = 0.0;
-
-  @override
-  void initState() {
-    super.initState();
-    _startTimer();
-  }
-
-  void _startTimer() {
-    const duration = Duration(seconds: 5);
-    Timer.periodic(const Duration(milliseconds: 100), (Timer timer) {
-      setState(() {
-        _progress += 0.02;
-        if (_progress >= 1.0) {
-          timer.cancel();
-          Navigator.pushNamed(context, '/login');
-        }
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final SplashController splashController = Get.put(SplashController());
+
     return Scaffold(
       body: Column(
         children: [
-          LinearProgressIndicator(
-            value: _progress,
-          ),
+          Obx(() {
+            return LinearProgressIndicator(
+              value: splashController.progress.value,
+            );
+          }),
           Expanded(
             child: Stack(
               children: [

@@ -99,7 +99,8 @@ class ToDoTile extends StatelessWidget {
                                           labelText: 'Описание задачи'),
                                     ),
                                     SizedBox(height: 8),
-                                    Text('Дата: ${DateFormat('dd.MM.yyyy').format(creationDate)}')
+                                    Text(
+                                        'Дата: ${DateFormat('dd.MM.yyyy').format(creationDate)}')
                                   ],
                                 ),
                                 actions: <Widget>[
@@ -108,7 +109,8 @@ class ToDoTile extends StatelessWidget {
                                     onPressed: () {
                                       setState(() {
                                         taskName = taskNameController.text;
-                                        taskDescription = taskDescriptionController.text;
+                                        taskDescription =
+                                            taskDescriptionController.text;
                                       });
                                       onNameChanged(taskName);
                                       Navigator.of(context).pop();
